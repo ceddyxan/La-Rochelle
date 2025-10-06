@@ -116,6 +116,12 @@
       <a href="#articles" data-i18n="nav.articles">Articles</a>
       <a href="#shop" data-i18n="nav.shop">Shop</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <!-- Mobile language toggles (visible on small screens) -->
+      <div class="pt-2 border-t border-white/10 mt-2 flex items-center space-x-3">
+        <button id="mobile-lang-en" class="text-sm hover:underline">English</button>
+        <span class="text-sm">|</span>
+        <button id="mobile-lang-fr" class="text-sm hover:underline">Français</button>
+      </div>
     </div>
   </header>
 
@@ -775,6 +781,12 @@
     setLanguage('en');
     document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
     document.getElementById('lang-fr').addEventListener('click', () => setLanguage('fr'));
+    
+  // Mobile language buttons (in mobileMenu)
+  const mobileLangEn = document.getElementById('mobile-lang-en');
+  const mobileLangFr = document.getElementById('mobile-lang-fr');
+  if (mobileLangEn) mobileLangEn.addEventListener('click', () => { setLanguage('en'); mobileMenu.classList.add('hidden'); burger.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); });
+  if (mobileLangFr) mobileLangFr.addEventListener('click', () => { setLanguage('fr'); mobileMenu.classList.add('hidden'); burger.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); });
   </script>
 </body>
 </html>
