@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Voyage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #EBEBEB 0%, #f5f5f5 100%);
+      color: #194142;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .article-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .article-header::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: #194142;
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: #194142;
+      text-shadow: 0 2px 4px rgba(25, 65, 66, 0.1);
+    }
+
+    .meta-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      color: #194142;
+      opacity: 0.7;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 400px;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(25, 65, 66, 0.2);
+      background: #194142;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-image .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(25, 65, 66, 0.8));
+      color: #EBEBEB;
+      padding: 2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .full-content {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(25, 65, 66, 0.15);
+      position: relative;
+    }
+
+    .full-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #194142 0%, #EBEBEB 25%, #194142 50%, #EBEBEB 75%, #194142 100%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .article-section {
+      margin-bottom: 2rem;
+    }
+
+    .article-section h2 {
+      color: #194142;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .article-section h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 20px;
+      background: #194142;
+      border-radius: 2px;
+    }
+
+    .article-section p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #194142 0%, #EBEBEB 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+      z-index: 1000;
+    }
+
+    .article-footer {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(25, 65, 66, 0.05);
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid rgba(25, 65, 66, 0.1);
+    }
+
+    .author-bio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #194142 0%, #2a5a5c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #EBEBEB;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .share-btn {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #194142;
+      background: transparent;
+      color: #194142;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .share-btn:hover {
+      background: #194142;
+      color: #EBEBEB;
+      transform: translateY(-2px);
+    }
+
+    /* Back Navigation Styles */
+    .back-navigation {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(25, 65, 66, 0.05) 0%, rgba(235, 235, 235, 0.8) 100%);
+      border-radius: 20px;
+      border: 2px solid rgba(25, 65, 66, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-navigation::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #194142 0%, #EBEBEB 50%, #194142 100%);
+    }
+
+    .back-content h3 {
+      color: #194142;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .back-content p {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .back-to-articles-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #194142 0%, #2a5a5c 100%);
+      color: #EBEBEB;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(25, 65, 66, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-to-articles-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .back-to-articles-btn:hover::before {
+      left: 100%;
+    }
+
+    .back-to-articles-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(25, 65, 66, 0.4);
+      background: linear-gradient(135deg, #2a5a5c 0%, #194142 100%);
+    }
+
+    .back-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .back-to-articles-btn:hover .back-icon {
+      transform: translateX(-3px);
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="container">
+    <div class="article-header">
+      <h1>Ma Vie En France Comme Assistante De Langue</h1>
+      <div class="meta-info">
+        <span>📅 October 5, 2025</span>
+        <span>⏱️ 12 minutes de lecture</span>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="Logo/Airfrance.jpg" alt="The Maiden Trip To France" />
+      <div class="image-overlay">
+        LE VOYAGE COMMENCE : Mon premier voyage en France en tant qu’assistante d’enseignement a été un tourbillon d’émotions, de l’excitation des nouveaux départs aux défis de l’adaptation à une culture différente.
+      </div>
+    </div>
+
+    <div class="full-content">
+      <div class="article-section">
+        
+        <h2> Le Voyage</h2>
+        <p>Oui oui, je suis en France ! Une semaine d’aventures, de souvenirs et… de folie. De la folie surtout à cause du trajet du Kenya jusqu’en France. J’étais parmi les premières assistantes de langue à partir — vous pouvez m’appeler la pionnière. Et petite confidence : je déteste les lundis. Alors j’essaie toujours de leur donner un sens. Évidemment, mon vol pour la France était… un lundi soir.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Ma famille avait voyagé le week-end pour m’accompagner. Leur fille aînée s’envolait enfin à l’étranger, et dans une famille africaine, c’est un énorme accomplissement. Encore plus pour moi : mes portes s’ouvraient enfin. L’an dernier, à la même époque, j’étais à l’aéroport pour dire au revoir à ma meilleure amie qui repartait au Royaume-Uni finir son master. Je me souviens avoir pensé : <em><strong>« Quand est-ce que viendra mon tour ? »</strong></em> Et voilà, c’est arrivé. Nous filons vers l’aéroport à 19h15, mon embarquement est prévu à 20h30.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Je sens que mes valises sont lourdes, mais impossible de le dire à mon père sinon il explose. Il m’avait déjà prévenue plusieurs fois que mes bagages étaient trop. Et effectivement : 29 kg, bien trop lourds et en surpoids ! Mais comment laisser derrière moi mes 4 robes préférées — pour la plage, pour un rendez-vous, pour l’église, et pour flâner dans les grandes villes ? Sans parler de mes 20 tops (qui ne semblaient jamais assez), mes jeans adorés, mes vestes (qui, je jure, prenaient la moitié de la place), et bien sûr, l’ours en peluche offert par mon amie Amanda.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Alors me voilà avec deux grosses valises, un sac à dos avec mon ordinateur et un sac en bandoulière devant. La petite fille de Komarock s’envole enfin ! Et pourtant je ne réalisais toujours pas. J’étais plus stressée qu’heureuse, inquiète de tout faire seule. Ma mère et mes tantes n’arrêtaient pas de me répéter : <em><strong>« Usibebe mtu bag, usishikie mtu mtoto, usisalime mtu »</strong></em> (ne porte pas le sac de quelqu’un, ne prends pas l’enfant de quelqu’un, ne salue personne). Et bien sûr : <em><strong>« Assure-toi de voir ton sac à tout moment, ne le laisse à personne. »</strong></em> Sérieusement, que d’avertissements ! Est-ce que c’est toujours comme ça quand on <em><strong>Kuenda majuu </strong></em>(part à l’étranger)?</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Dire au revoir à mes amis a été douloureux parce que nos <em>adulting timetables</em> venaient d’être bouleversés — on faisait tellement de choses ensemble. Puis ce fut au tour de ma famille : mes frères et sœurs, mes tantes, mon oncle, mon petit cousin qui allait vraiment me manquer, ma mère (encore dans le déni que sa petite fille s’en va) et mon père (qui répétait encore « dépêche-toi, il est presque l’heure d’embarquer »).</p>
+      </div>
+
+      <div class="article-section">
+        
+        <h2>Contrôle de sécurité 1</h2>
+        <p>Premier choc : le tapis roulant où l’on doit poser ses bagages. Avec mes énormes valises, je devais les soulever. Moi, 45 kg à peine, face à 29 kg de valise… j’ai cru m’évanouir ! Personne autour ne m’a aidée, chacun dans sa bulle. J’ai compris : voilà l’indépendance.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Et là, le cauchemar commence : mes valises sont trop lourdes. Je vois ma mère et ma tante hurler derrière les vitres (heureusement qu’elles étaient insonorisées). Après un vrai feuilleton — enlever des affaires, en laisser, un employé qui voulait me vendre une valise supplémentaire, et ma tante criant « NON ! » — j’ai fini par abandonner mes 4 kg de unga ya ugali, mes lentilles, mon peignoir et deux robes. Adieu mon dîner du lendemain.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Heureusement, grâce à ma petite taille, le personnel m’a prise pour une mineure — privilège de short girl ! Ils ont été adorables, même si j’ai payé 8 000 Ksh pour seulement 2 kg de plus. Ensuite j’ai laissé mes affaires en trop à ma famille, leur ai dit un dernier vrai au revoir et me suis dirigée vers le contrôle passeport. À ce stade, j’avais déjà mon boarding pass. Une dame gentille m’a demandé pourquoi j’allais en France (tout le monde pensait que c’était pour des études vu ma tête de « trop jeune »). Puis je suis partie chercher ma porte d’embarquement, mon père appelant déjà cent fois pour vérifier que j’y étais bien. 20h56. Première fois seule à l’aéroport. Pression maximale.</p>
+        <center><img src="Logo/Family.jpg" alt="Family" height="322" width="185"/></center>
+      </div>
+        
+      <div class="article-section">
+        
+        <h2>Contrôle de sécurité 2</h2>
+        <p>Encore un contrôle ! Pour arriver à la porte 18, il fallait enlever les chaussures, la veste, sortir l’ordinateur dans un bac à part. Franchement, ça m’a mise en rogne. Ouvrir mon sac, ressortir le PC, le remettre après, fermer… alors qu’il y avait une file de gens derrière moi. Mais bon, au moins j’ai eu des biceps gratuits. L’agent m’a gentiment indiqué la porte 18 et a même proposé de m’accompagner, mais je me suis dit : non, je dois faire ça seule.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <h2>Contrôle de sécurité 3</h2>
+        <p>J’en avais marre de tous ces contrôles ! Celui-ci était celui de la compagnie : passeport, visa, scan. La dame souriait à tout le monde… sauf à moi. Quand ce fut mon tour, elle m’a lancé un regard glacial et m’a demandé : « Que venez-vous faire en France ? » J’ai dû rester calme. Et ironie : elle était noire aussi.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Enfin, je me suis assise, j’ai appelé mon père pour lui dire que l’embarquement n’avait pas encore commencé. Puis mes amis, pour leur dire que j’avais réussi. Trempée de sueur, épuisée, mais fière. Quand j’ai vu l’avion, j’ai poussé un soupir de soulagement. Excitation en bonus. J’avais choisi un siège côté fenêtre (of course) et je redoutais mes voisins. Finalement, un couple — pas du tout agaçant (hallelujah !). Et le réseau fonctionnait encore : j’ai pu envoyer les dernières photos et messages avant que le fuseau horaire change.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <h2>La nourriture dans l’avion</h2>
+        <p><em><strong> Wataniua na mkate huku mai lawd</strong></em> (ils vont me tuer avec leur pain). <strong>Au menu: </strong> poulet avec pommes de terre, salade, gressins au sésame, pain, beurre, gâteau aux myrtilles, et mon ennemi juré… le fromage. Vous pourrez me juger plus tard.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>J’avais soif tout le vol. Et l’eau en France ? Trop de minéraux. <em><strong>Ni maji ya chumvi</strong></em> (en gros, de l’eau salée). Au petit déjeuner ? Devinez… du pain, encore du pain, avec un queen cake, un yaourt et du jus. Il y avait du vin au dîner mais j’ai passé — je devais rester éveillée pour ma correspondance.</p>
+      </div>
+
+      <div class="article-section">
+        
+        <h2> Arrivée à Paris</h2>
+        <p>Parisssssss ! Enfin… c’est ce que je croyais. En réalité : il faisait froid, il pleuvait, c’était le chaos. Une heure seulement pour ma correspondance à Nantes. <em><strong> Safari bado ni ndefu</strong></em> (le voyage est encore long). Terminal 2F… un vrai parcours du combattant. Escaliers roulants en haut, en bas, encore en haut. Je suis sûre d’avoir perdu 5 kg en courant partout. On aurait dit une chasse au trésor. Pas parce que j’étais perdue, mais parce que c’était loiiiiin. <em><strong> Haibo !</strong></em></p>
+      </div>
+
+      <div class="article-section">
+        
+        <p>Et puis encore un contrôle, façon film américain : mon ordi, mon sac, ma veste, mon passeport, tout y passe. De l’autre côté, c’était l’immigration. La file était interminable. Trente minutes plus tard, mon tour. La dame devant moi n’avait pas l’air d’humeur. « Bonjour », dit-elle en souriant. Choquée ! Je m’attendais à un contrôle froid, strict, surtout en tant que femme noire. Elle vérifie mon passeport et mon visa, puis me demande pourquoi je suis en France. Je réponds : assistante d’anglais. Elle me dit « waouh », me demande d’enlever mon chapeau, me fixe cinq secondes et conclut : « Bienvenue en France ! Profitez de votre séjour. » Cinq minutes chrono.</p>
+        <p>Enfin, j’arrive au terminal 2F. Et vous ne devinerez jamais ce qui m’est arrivé ensuite…</p>
+      </div>
+
+      <div class="article-section">
+        
+        <em><strong>À suivre…</strong></em>
+      </div>
+
+
+    </div>
+
+    <div class="article-footer">
+      <div class="author-bio">
+        <div class="author-avatar">RJ</div>
+        <div>
+          <strong>Rochelle Juma</strong><br>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retour à la navigation des articles -->
+    <div class="back-navigation">
+      <div class="back-content">
+          <h3 style="font-size:1.5rem;font-weight:bold;margin-bottom:1rem;color:#194142;">Continuer la lecture</h3>
+          <p style="margin-bottom:1.5rem;color:#194142;">Explorez plus d'articles et découvrez de nouvelles perspectives sur la culture, la politique et la société africaines.</p>
+          <a href="index.html#articles" class="back-to-articles-btn" style="display:inline-block;padding:0.8rem 1.5rem;border:2px solid #194142;background:transparent;color:#194142;border-radius:25px;cursor:pointer;transition:all 0.3s ease;text-decoration:none;font-weight:bold;">
+            <span class="back-icon" style="margin-right:8px;">&larr;</span>
+            Retour aux articles
+          </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateProgressBar() {
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight - winHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('progressBar').style.width = Math.max(0, Math.min(100, scrollPercent)) + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+    window.addEventListener('resize', updateProgressBar);
+    updateProgressBar();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.article-section');
+      sections.forEach(section => {
+        section.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateX(5px)';
+          this.style.transition = 'transform 0.3s ease';
+        });
+        section.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateX(0)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

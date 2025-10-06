@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La culture Matwana au Kenya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #EBEBEB 0%, #f5f5f5 100%);
+            color: #194142;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #194142;
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #194142;
+            text-shadow: 0 2px 4px rgba(25, 65, 66, 0.1);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            color: #194142;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(25, 65, 66, 0.2);
+            background: #194142;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-image .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(25, 65, 66, 0.8));
+            color: #EBEBEB;
+            padding: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .full-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(25, 65, 66, 0.15);
+            position: relative;
+        }
+
+        .full-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #194142 0%, #EBEBEB 25%, #194142 50%, #EBEBEB 75%, #194142 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .article-section {
+            margin-bottom: 2rem;
+        }
+
+        .article-section h2 {
+            color: #194142;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .article-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #194142;
+            border-radius: 2px;
+        }
+
+        .article-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #194142 0%, #EBEBEB 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .article-footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(25, 65, 66, 0.05);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(25, 65, 66, 0.1);
+        }
+
+        .author-bio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #194142 0%, #2a5a5c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #EBEBEB;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #194142;
+            background: transparent;
+            color: #194142;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .share-btn:hover {
+            background: #194142;
+            color: #EBEBEB;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .full-content {
+                padding: 1.5rem;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <div class="article-header">
+            <h1>La culture Matwana au Kenya</h1>
+            <div class="meta-info">
+                <span>📅 September 6, 2025</span>
+                <span>⏱️ 6 min read</span>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://thenganya.vercel.app/nganya1.webp" alt="Colorful matatu nganya showcasing Matwana culture" />
+            <div class="image-overlay">
+                La culture colorée des matatus kenyans
+            </div>
+        </div>
+
+        <div class="full-content">
+            <div class="article-section">
+                <h2>Introduction : Les sons du matatu</h2>
+                <p>« <em><strong>Beba Beba Beba, wa haraka iende, panda Ndege epuka jam</strong></em> » Ce sont les sons autour d'un 'matatu' à la gare routière.</p>
+                
+                <p>Qu'est-ce que c'est « un <em><strong>matatu</strong></em> » alias <em><strong>matwana</strong></em> en swahili ? C'est une voiture de 14 places ou 33 places, plutôt de 33 sièges. De plus, c'est une voiture pour le transport en commun.</p>
+                
+                <p>En revanche, il y a la culture <em><strong>matwana</strong></em> - qui consiste les <em><strong>matatus</strong></em> extraordinaires appelés « <em><strong>nganya</strong></em> » l'argot du nom <em><strong>matatu</strong></em> : c'est-à-dire un matatu exceptionnel voire extraordinaire.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>L'art du nganya : Une œuvre sublime</h2>
+                <p>Qu'est-ce qui fait d'un <em><strong>matatu</strong></em> un <em><strong>nganya</strong></em> ? Oh la la… ! Où dois-je commencer ? D'abord, l'œuvre du <em><strong>nganya</strong></em> est sublime. L'extérieur et l'intérieur sont couverts de graffitis. Un graphisme très créatif pour chaque matatu menant à un nom spécifique pour celui-ci.</p>
+                
+                <p>Ensuite, les phares qui sont sublimes. Particulièrement pendant la nuit, elles se démarquent des autres voitures et font toujours tourner les têtes. Les bus différents avec les couleurs différentes et uniques.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>La musique : L'âme du voyage</h2>
+                <p>Troisièmement et plus important c'est la musique et le système audio (des baffles/ haut-parleur) de qualité supérieure. Selon l'heure de la journée, genres différents de musique sont joués, par exemple le matin, c'est toujours du gospel jusqu'à 8 heures. Pendant tout le trajet jusqu'à votre destination, vous aurez la garantie de vous divertir.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>La carrosserie personnalisée</h2>
+                <p>Enfin, la carrosserie. Ils sont plus souvent personnalisés contrairement aux <em><strong>matatus</strong></em> normaux. Depuis les sièges meublés, les portraits créatifs et les dessins jusqu'aux écrans géants que l'on ne voit qu'à la maison ou dans les supermarchés.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Pourquoi choisir un nganya ?</h2>
+                <p>Plusieurs des gens me demanderont, « Pourquoi choisissez-vous un <em><strong>nganya</strong></em> au lieu d'un <em><strong>matatu</strong></em> régulier ? » <em><strong>Eh my guy the speed! the thrill, huezi elewa…</strong></em> La vitesse ! Nairobi est une ville très animée et des <em><strong>nganyas</strong></em> savent comment éviter les embouteillages.</p>
+                
+                <p>Par exemple, il faut environ 45 minutes pour aller de chez moi à la ville, cependant, si j'utilise un <em><strong>nganya</strong></em>, je serai en ville en 25 minutes. Ils prennent parfois des raccourcis qui risquent de vous conduire en <em>Tanzanie</em> !!! <em>Haha !!!</em> <em><strong>Bora wasikae kwa jam</strong></em>.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Comment identifier un nganya</h2>
+                <p>Bref et sans oublier, pour identifier un <em><strong>nganya</strong></em>, ils ont toujours un autocollant de <em><strong>MATWANA CULTURE</strong></em> sur le pare-brise ou les côtés.</p>
+                
+                <p>Aimeriez-vous embarquer à bord d'un <em><strong>nganya</strong></em> ?</p>
+            </div>
+        </div>
+
+        <div class="article-footer">
+            <div class="author-bio">
+                <div class="author-avatar">RJ</div>
+                <div>
+                    <strong>Rochelle JUMA</strong><br>
+                        </div>
+
+        <!-- Retour à la navigation des articles -->
+    <div class="back-navigation">
+      <div class="back-content">
+          <h3 style="font-size:1.5rem;font-weight:bold;margin-bottom:1rem;color:#194142;">Continuer la lecture</h3>
+          <p style="margin-bottom:1.5rem;color:#194142;">Explorez plus d'articles et découvrez de nouvelles perspectives sur la culture, la politique et la société africaines.</p>
+          <a href="index.html#articles" class="back-to-articles-btn" style="display:inline-block;padding:0.8rem 1.5rem;border:2px solid #194142;background:transparent;color:#194142;border-radius:25px;cursor:pointer;transition:all 0.3s ease;text-decoration:none;font-weight:bold;">
+            <span class="back-icon" style="margin-right:8px;">&larr;</span>
+            Retour aux articles
+          </a>
+      </div>
+    </div>
+  </div>
+    </div>
+
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight - winHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = Math.max(0, Math.min(100, scrollPercent)) + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        window.addEventListener('resize', updateProgressBar);
+        
+        // Initial progress bar update
+        updateProgressBar();
+        
+        // Smooth scroll enhancement for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle hover effects to sections
+            const sections = document.querySelectorAll('.article-section');
+            
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+    html { scroll-behavior: smooth; }
+
+    /* Intro logo */
+    .intro-logo {
+      font-size: 4rem; font-weight: bold; position: absolute;
+      color: #194142; white-space: nowrap; opacity: 0; transform: scale(0.8);
+      animation: zoomFadeIn 0.4s ease forwards;
+    }
+    .intro-logo::after {
+      content: attr(data-text); position: absolute; top: 0; left: 0;
+      width: 0; color: #5e9787; overflow: hidden; white-space: nowrap;
+      animation: wipeReveal 2s ease forwards 0.8s;
+    }
+    @keyframes zoomFadeIn { 0% { opacity:0; transform:scale(0.8);} 100% {opacity:1; transform:scale(1.2);} }
+    @keyframes wipeReveal { 0%{width:0;} 50%{width:100%;} 100%{width:0;} }
+
+    /* Transition for movement */
+    .animate-to-header {
+      transition: all 1.2s ease-in-out; color: #EBEBEB !important;
+      font-size: 1.5rem !important;
+    }
+
+    /* Fade in header */
+    .fade-in { opacity:0; transition:opacity 1s ease; }
+    .fade-in.show { opacity:1; }
+
+    /* Sliding underline effect */
+    nav a, nav button {
+      position: relative; display:inline-block; padding-bottom: 2px;
+    }
+    nav a::after, nav button::after {
+      content:""; position:absolute; left:0; bottom:0;
+      width:0; height:2px; background-color:#EBEBEB; transition:width 0.3s ease;
+    }
+    nav a:hover::after, nav button:hover::after { width:100%; }
+
+    /* Dropdown hover */
+    .dropdown:hover .dropdown-menu { display:block; }
+
+    /* Custom font for homepage title */
+    .magazine-title { font-family: 'Vidaloka', serif; }
+
+    .glass-card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D Hover Effects */
+        .article-card:hover {
+            transform: translateY(-15px) rotateY(5deg) rotateX(5deg);
+            box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Shimmer Effect on Hover */
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .article-card:hover::after {
+            left: 100%;
+        }
+
+        /* Image Container and Overlays */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.5s ease;
+        }
+
+        .group:hover .article-image {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+
+        .group:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .category-tag {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Ripple Button Effects */
+        .ripple-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .ripple-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .ripple-button span {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Additional hover effects for buttons */
+        .ripple-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .article-card:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+  

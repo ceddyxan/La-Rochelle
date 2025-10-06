@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'église du Pasteur Nganga</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #EBEBEB 0%, #f5f5f5 100%);
+            color: #194142;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #194142;
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #194142;
+            text-shadow: 0 2px 4px rgba(25, 65, 66, 0.1);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            color: #194142;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(25, 65, 66, 0.2);
+            background: #194142;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-image .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(25, 65, 66, 0.8));
+            color: #EBEBEB;
+            padding: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .full-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(25, 65, 66, 0.15);
+            position: relative;
+        }
+
+        .full-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #194142 0%, #EBEBEB 25%, #194142 50%, #EBEBEB 75%, #194142 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .article-section {
+            margin-bottom: 2rem;
+        }
+
+        .article-section h2 {
+            color: #194142;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .article-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #194142;
+            border-radius: 2px;
+        }
+
+        .article-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #194142 0%, #EBEBEB 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .article-footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(25, 65, 66, 0.05);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(25, 65, 66, 0.1);
+        }
+
+        .author-bio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #194142 0%, #2a5a5c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #EBEBEB;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #194142;
+            background: transparent;
+            color: #194142;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .share-btn:hover {
+            background: #194142;
+            color: #EBEBEB;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .full-content {
+                padding: 1.5rem;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <div class="article-header">
+            <h1>L'église du Pasteur Nganga</h1>
+            <div class="meta-info">
+                <span>📅 September 6, 2025</span>
+                <span>⏱️ 8 min read</span>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpYjMIlIZNQwxQOeq8TT6FxKBx_gDNedXj2M7rX3mbXSz3yEr_3dwo6nQ8CL4gDbly_k&usqp=CAU" alt="L'église Neno Evangelism du Pasteur Nganga" />
+            <div class="image-overlay">
+                L'expérience unique de Neno Evangelism
+            </div>
+        </div>
+
+        <div class="full-content">
+            <p style="text-align: center; font-weight: bold; color: #194142; background: rgba(25, 65, 66, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;"><strong>ATTENTION : aucune discrimination n'est faite à l'encontre d'une religion ou d'une dénomination. Cet article est publié uniquement à des fins de divertissement.</strong></p>
+            
+            <div class="article-section">
+                <h2>Qui est le Pasteur Nganga ?</h2>
+                <p>Connaissez-vous pasteur Nganga ? <em><strong>Le Commandant général en chef ?</strong></em> Le pasteur de <em><strong>Gen Z</strong></em> ? Le célèbre chanteur de <em><strong>wanapanga kunimaliza</strong></em> et, à mon avis, le meilleur guitariste du Kenya !</p>
+                
+                <p>Plusieurs diraient que c'est un escroc, un fraudeur, mais pour certains d'entre nous, c'est un homme très drôle.</p>
+                
+                <div class="highlight-box">
+                    Son église s'appelle <em><strong>Neno Evangelism</strong></em>. Dimanche dernier, mes amis et moi avons décidé d'assister au culte et d'écouter notre chanson préférée, <em><strong>Shuka Zakayo</strong></em>, interprétée en direct car <em>Zakayo</em> devrait vraiment se retirer, trop c'est trop !
+                </div>
+            </div>
+
+            <div class="article-section">
+                <h2>L'arrivée à l'église</h2>
+                <p>À 11h, nous sommes arrivés au centre-ville où se situe l'église. Le parking était plein et nous avons été fouillés par des huissiers à l'entrée. Le sanctuaire était complètement rempli et on nous a demandé de nous asseoir à l'étage.</p>
+                
+                <p>La première chose qu'on a remarquée, c'est qu'aucune femme ne portait de pantalon, sauf nous. Cela nous différenciait des vrais croyants. Leurs chaises étaient vraiment élégantes, contrairement à d'autres églises où ce type de sièges est destiné aux pasteurs ou aux invités importants. Les pasteurs sont assis devant sur des canapés.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>La chasse aux démons</h2>
+                <p>Au bout d'un moment, nous sommes descendues pour mieux voir <em><strong>le Commandant</strong></em>. Quelques minutes plus tard, il y avait un homme qui était chassé des démons et qui confessait comment il avait mangé la tête de sa femme. Une de mes amies a éclaté de rire ! Elle a ri si fort que les autres fidèles nous ont jeté de vils regards.</p>
+                
+                <div class="highlight-box">
+                    Elle a même demandé à son voisin de table : « Vous ne trouvez pas ça drôle ? » C'est ça le truc, ils étaient tellement habitués que ça ne les dérangeait pas.
+                </div>
+            </div>
+
+            <div class="article-section">
+                <h2>La guitare et les chansons</h2>
+                <p>La prédication avait du sens [jusqu'à ce qu'il commence à insulter les gens]. Il y avait des jeunes assis à l'étage et nous avons pensé qu'ils se faisaient baptiser, jusqu'au moment des offrandes où ils ont commencé à descendre en dansant. <em><strong>Le Commandant</strong></em> a enfin pris sa guitare, c'est le moment que nous attendions tous. Seules ses chansons originales sont interprétées.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>La danse et les offrandes</h2>
+                <p>Lors des offrandes, il disait "<em>Wacha hata niangalie pande hii nisione hizo 50 bob zenu</em>". Puis on a commencé à chanter, ce qui nous a poussés à nous y rendre. <em>My friend ile kudance se trouve là-bas</em>… ?</p>
+                
+                <p>Une fois encore, vous avez besoin de <em>Stamina, de pumzi, d'akili, de concentration, de consistency, de mabreka ya kutosha...</em>La danse consistait à se balancer la tête d'avant en arrière, <em>karibu tuvunje shingo,</em> à sauter et, pour moi, le meilleur moment, <em>kitamba kitamba ya Yesu</em> qui signifie le drapeau de Jésus. Une fois qu'il a crié 1, 2, 3, nous lançons les <em>vitambas</em> en l'air.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Le spectacle continue</h2>
+                <p>Pendant le culte, les gens tombaient et se roulaient par terre. <em>Ni kama video kama drama.</em> C'était comme un spectacle !</p>
+                
+                <p>Ensuite, les personnes qui avaient besoin d'expulser les démons se sont présentées. [Les gens disent qu'ils sont généralement des comédiens rémunérés]. <em><strong>Nganga</strong></em> chasse alors les démons en demandant quels sont leurs noms démoniaques et ce qu'ils font. Après cela, il prie pour eux, et les voilà « délivrés ».</p>
+                
+                <div class="highlight-box">
+                    <em>Paid actors, si mimi ndio nakushow !</em> Après avoir applaudi, il nous a demandé : « Pourquoi applaudissiez-vous, <em>mafala nyinyi ?</em> » Bizarrement, ses insultes sont si normales dans son église.
+                </div>
+            </div>
+
+            <div class="article-section">
+                <h2>Conclusion</h2>
+                <p>Plus de 3 heures plus tard, il était temps pour nous de mettre un terme à notre aventure. Ce fut une expérience très intéressante.</p>
+                
+                <p>Existe-t-il des pratiques similaires dans votre lieu de culte ? <em><strong>On écoute, on ne juge pas</strong></em></p>
+            </div>
+        </div>
+
+        <div class="article-footer">
+            <div class="author-bio">
+                <div class="author-avatar">RJ</div>
+                <div>
+                    <strong>Rochelle Juma</strong><br>
+                    </div>
+
+    <!-- Retour à la navigation des articles -->
+    <div class="back-navigation">
+      <div class="back-content">
+          <h3 style="font-size:1.5rem;font-weight:bold;margin-bottom:1rem;color:#194142;">Continuer la lecture</h3>
+          <p style="margin-bottom:1.5rem;color:#194142;">Explorez plus d'articles et découvrez de nouvelles perspectives sur la culture, la politique et la société africaines.</p>
+          <a href="index.html#articles" class="back-to-articles-btn" style="display:inline-block;padding:0.8rem 1.5rem;border:2px solid #194142;background:transparent;color:#194142;border-radius:25px;cursor:pointer;transition:all 0.3s ease;text-decoration:none;font-weight:bold;">
+            <span class="back-icon" style="margin-right:8px;">&larr;</span>
+            Retour aux articles
+          </a>
+      </div>
+    </div>
+  </div>
+    </div>
+
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight - winHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = Math.max(0, Math.min(100, scrollPercent)) + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar);
+        window.addEventListener('resize', updateProgressBar);
+        
+        // Initial progress bar update
+        updateProgressBar();
+        
+        // Smooth scroll enhancement for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle hover effects to paragraphs
+            const paragraphs = document.querySelectorAll('.article-section');
+            
+            paragraphs.forEach(paragraph => {
+                paragraph.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                paragraph.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
